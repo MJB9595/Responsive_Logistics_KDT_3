@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 import { useInView } from '../hooks/useInView'
 import { useCountUp } from '../hooks/useCountUp'
@@ -132,13 +133,13 @@ export default function Service() {
             </p>
           </Reveal>
           <Reveal delay={220}>
-            <a
-              href="#cta"
+            <Link
+              to="/support"
               className="group mt-6 inline-flex items-center gap-2 rounded-xl border-[1.5px] border-blue-600 bg-white px-9 py-3.5 text-[16px] font-semibold text-blue-600 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-600 hover:text-white hover:shadow-lg hover:shadow-blue-600/25"
             >
               도입 문의하기
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            </Link>
           </Reveal>
 
           {/* Features */}

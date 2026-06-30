@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 import { Building, Snowflake, Package, Zap, ArrowRight } from './icons'
 
@@ -79,7 +80,7 @@ export default function About() {
         <div className="mx-auto mb-16 max-w-2xl text-center">
           <Reveal>
             <span className="inline-block rounded-full bg-sky-50 px-5 py-1.5 text-[14px] font-semibold text-sky-700">
-              ColdChain WMS 소개
+              Fresh Chain WMS 소개
             </span>
           </Reveal>
           <Reveal delay={100}>
@@ -123,13 +124,13 @@ export default function About() {
               <h3 className="mt-7 text-[21px] font-bold text-sky-900">{c.title}</h3>
               <p className="mt-3 text-[16px] leading-[1.65] text-slate-500">{c.desc}</p>
               {/* link */}
-              <a
-                href="#service"
+              <Link
+                to="/service"
                 className={`mt-6 inline-flex items-center gap-1.5 text-[15px] font-semibold ${c.linkColor}`}
               >
                 자세히 보기
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-              </a>
+              </Link>
             </Reveal>
           ))}
         </div>

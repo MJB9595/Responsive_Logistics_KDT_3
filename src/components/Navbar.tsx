@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Snowflake, Menu } from './icons'
 
 const LINKS = [
-  { label: '회사소개', href: '#about' },
-  { label: '서비스', href: '#service' },
-  { label: '기술아키텍처', href: '#cta' },
-  { label: '모니터링', href: '#monitoring' },
-  { label: '고객센터', href: '#footer' },
+  { label: '회사소개', to: '/about' },
+  { label: '서비스', to: '/service' },
+  { label: '기술아키텍처', to: '/architecture' },
+  { label: '모니터링', to: '/monitoring' },
+  { label: '고객센터', to: '/support' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -19,6 +21,11 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  // 라우트 변경 시 모바일 메뉴 닫기
+  useEffect(() => {
+    setOpen(false)
+  }, [location.pathname])
 
   return (
     <header
@@ -34,7 +41,7 @@ export default function Navbar() {
         }`}
       >
         {/* Logo */}
-        <a href="#top" className="group flex items-center gap-3.5" aria-label="Fresh Chain WMS 홈">
+        <Link to="/" className="group flex items-center gap-3.5" aria-label="Fresh Chain WMS 홈">
           <span className="grid h-12 w-12 place-items-center rounded-[13px] bg-gradient-to-br from-sky-500 to-sky-700 text-white shadow-lg shadow-sky-500/30 transition-transform duration-500 group-hover:scale-105 group-hover:rotate-[18deg]">
             <Snowflake className="h-6 w-6" />
           </span>
@@ -42,36 +49,48 @@ export default function Navbar() {
             <strong className="text-[20px] font-extrabold tracking-tight text-sky-900">Fresh Chain</strong>
             <small className="text-[13px] font-bold tracking-[0.18em] text-sky-500">WMS</small>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-11 lg:flex" aria-label="주요 메뉴">
           {LINKS.map((l) => (
-            <a
+            <NavLink
               key={l.label}
-              href={l.href}
-              className="group relative text-[16px] font-medium text-slate-700 transition-colors duration-300 hover:text-sky-600"
+              to={l.to}
+              className={({ isActive }) =>
+                `group relative text-[16px] font-medium transition-colors duration-300 hover:text-sky-600 ${
+                  isActive ? 'text-sky-600' : 'text-slate-700'
+                }`
+              }
             >
-              {l.label}
-              <span className="absolute -bottom-1.5 left-0 h-0.5 w-full origin-left scale-x-0 rounded-full bg-gradient-to-r from-sky-500 to-sky-700 transition-transform duration-300 group-hover:scale-x-100" />
-            </a>
+              {({ isActive }) => (
+                <>
+                  {l.label}
+                  <span
+                    className={`absolute -bottom-1.5 left-0 h-0.5 w-full origin-left rounded-full bg-gradient-to-r from-sky-500 to-sky-700 transition-transform duration-300 ${
+                      isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                    }`}
+                  />
+                </>
+              )}
+            </NavLink>
           ))}
         </nav>
 
         {/* Right actions */}
         <div className="flex items-center gap-3">
-          <a
-            href="#service"
+          <Link
+            to="/service"
             className="hidden rounded-[10px] border border-slate-200 px-6 py-2.5 text-[15px] font-medium text-slate-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-700 sm:block"
           >
             데모 보기
-          </a>
-          <a
-            href="#cta"
+          </Link>
+          <Link
+            to="/support"
             className="rounded-[10px] bg-gradient-to-br from-sky-500 to-sky-700 px-7 py-2.5 text-[15px] font-semibold text-white shadow-lg shadow-sky-500/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-sky-500/40 hover:brightness-110"
           >
             로그인
-          </a>
+          </Link>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -91,14 +110,17 @@ export default function Navbar() {
       >
         <nav className="flex flex-col gap-1 px-6 py-4" aria-label="모바일 메뉴">
           {LINKS.map((l) => (
-            <a
+            <NavLink
               key={l.label}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="rounded-lg px-3 py-3 text-[15px] font-medium text-slate-700 transition-colors hover:bg-sky-50 hover:text-sky-700"
+              to={l.to}
+              className={({ isActive }) =>
+                `rounded-lg px-3 py-3 text-[15px] font-medium transition-colors hover:bg-sky-50 hover:text-sky-700 ${
+                  isActive ? 'bg-sky-50 text-sky-700' : 'text-slate-700'
+                }`
+              }
             >
               {l.label}
-            </a>
+            </NavLink>
           ))}
         </nav>
       </div>

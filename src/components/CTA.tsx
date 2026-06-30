@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 import { Snowflake, ArrowRight, Phone, ShieldCheck, CreditCard, Clock } from './icons'
 
@@ -51,20 +52,20 @@ export default function CTA() {
 
           <Reveal delay={260}>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <a
-                href="#"
+              <Link
+                to="/support"
                 className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-sky-500 to-sky-700 px-11 py-5 text-[18px] font-bold text-white shadow-2xl shadow-sky-900/50 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sky-500/40 hover:brightness-110"
               >
                 무료로 시작하기
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1.5" />
-              </a>
-              <a
-                href="#footer"
+              </Link>
+              <Link
+                to="/support"
                 className="group inline-flex items-center justify-center gap-2 rounded-xl border border-sky-400/60 px-11 py-5 text-[18px] font-semibold text-sky-200 transition-all duration-300 hover:-translate-y-0.5 hover:bg-sky-400/10"
               >
                 <Phone className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
                 도입 상담 문의
-              </a>
+              </Link>
             </div>
           </Reveal>
 

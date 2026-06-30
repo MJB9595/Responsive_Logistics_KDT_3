@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ArrowRight, Play } from './icons'
 import { useCountUp } from '../hooks/useCountUp'
 
@@ -125,20 +126,20 @@ export default function Hero() {
           className={`${ENTER} mt-9 flex flex-col items-center gap-4 sm:flex-row`}
           style={{ animationDelay: '560ms' }}
         >
-          <a
-            href="#service"
+          <Link
+            to="/service"
             className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-sky-500 to-sky-700 px-7 py-3.5 text-[16px] font-bold text-white shadow-xl shadow-sky-900/40 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-sky-500/40 hover:brightness-110"
           >
             서비스 둘러보기
             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
-          <a
-            href="#monitoring"
+          </Link>
+          <Link
+            to="/monitoring"
             className="group inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/5 px-7 py-3.5 text-[16px] font-semibold text-sky-100 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-sky-300/60 hover:bg-white/10"
           >
             <Play className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
             데모 영상 보기
-          </a>
+          </Link>
         </div>
 
         {/* Stats */}
@@ -172,8 +173,9 @@ export default function Hero() {
       </div>
 
       {/* Scroll cue */}
-      <a
-        href="#about"
+      <button
+        type="button"
+        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         aria-label="아래로 스크롤"
         className="absolute bottom-9 right-8 z-10 hidden flex-col items-center gap-2 text-sky-200/70 transition-colors hover:text-sky-200 lg:flex"
       >
@@ -181,7 +183,7 @@ export default function Hero() {
         <span className="flex h-9 w-5 justify-center rounded-full border border-sky-200/40 pt-1.5">
           <span className="h-2 w-1 animate-bounce rounded-full bg-sky-300" />
         </span>
-      </a>
+      </button>
     </section>
   )
 }

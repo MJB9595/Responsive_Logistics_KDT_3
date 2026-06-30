@@ -1,4 +1,5 @@
 import { useRef, type ReactNode, type CSSProperties, type MouseEvent } from 'react'
+import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 import { useInView } from '../hooks/useInView'
 import { useCountUp } from '../hooks/useCountUp'
@@ -264,19 +265,19 @@ export default function Monitoring() {
           </Reveal>
           <Reveal delay={240}>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a
-                href="#cta"
+              <Link
+                to="/support"
                 className="group inline-flex items-center gap-2 rounded-xl bg-sky-600 px-8 py-3 text-[15px] font-semibold text-white shadow-lg shadow-sky-600/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-sky-700 hover:shadow-xl hover:shadow-sky-600/35"
               >
                 대시보드 전체 보기
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
-              <a
-                href="#about"
+              </Link>
+              <Link
+                to="/about"
                 className="rounded-xl border border-sky-600 bg-white px-8 py-3 text-[15px] font-medium text-sky-600 transition-all duration-300 hover:-translate-y-0.5 hover:bg-sky-50"
               >
                 더 알아보기
-              </a>
+              </Link>
             </div>
           </Reveal>
         </div>
