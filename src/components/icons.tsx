@@ -302,3 +302,26 @@ export const Check = (p: IconProps) => (
     <path d="M20 6 9 17l-5-5" />
   </Svg>
 )
+
+export const MapPin = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+    <circle cx="12" cy="10" r="3" />
+  </Svg>
+)
+
+export const CheckCircle2 = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+    <path d="m9 11 3 3L22 4" />
+  </Svg>
+)
+
+export const Users = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+  </Svg>
+)
