@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+
+const TAB_GAP = 16; // 헤더와 탭바 사이 간격(px)
 
 const TABS = [
   { label: "온도관리", href: "#temperature" },
@@ -22,32 +24,44 @@ export default function ServiceTabs() {
     }
   };
 
+  useLayoutEffect(() => {
+    const header = document.querySelector("header");
+    if (!header) return;
+
+    const updateHeaderHeight = () => {
+      setHeaderHeight(header.getBoundingClientRect().height);
+    };
+    updateHeaderHeight();
+
+    const resizeObserver = new ResizeObserver(updateHeaderHeight);
+    resizeObserver.observe(header);
+    return () => resizeObserver.disconnect();
+  }, []);
+
   useEffect(() => {
     const placeholder = placeholderRef.current;
     if (!placeholder) return;
 
-    // 헤더 높이를 구해서 fixed일 때 그 바로 아래에 붙게 함
-    const header = document.querySelector("header");
-    if (header) {
-      setHeaderHeight(header.getBoundingClientRect().height);
-    }
-
-    // 탭바가 원래 위치한 문서 기준 Y좌표를 저장
-    const originalTop =
-      placeholder.getBoundingClientRect().top + window.scrollY;
     setTabHeight(placeholder.offsetHeight);
 
     const handleScroll = () => {
-      setIsFixed(window.scrollY > originalTop);
+      const rect = placeholder.getBoundingClientRect();
+      setIsFixed(rect.top <= headerHeight + TAB_GAP);
     };
 
     handleScroll();
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("resize", handleScroll);
+    window.addEventListener("load", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      window.removeEventListener("load", handleScroll);
+    };
+  }, [headerHeight]);
 
   return (
-    // isFixed일 때 탭바가 빠지면서 아래 콘텐츠가 튀어오르지 않도록 자리 확보
     <div
       ref={placeholderRef}
       className="my-8"
@@ -59,7 +73,7 @@ export default function ServiceTabs() {
             ? "fixed left-1/2 z-50 w-fit -translate-x-1/2"
             : "relative mx-auto w-fit"
         }
-        style={isFixed ? { top: headerHeight } : undefined}
+        style={isFixed ? { top: headerHeight + TAB_GAP } : undefined}
       >
         <div className="absolute -inset-2 -z-10 rounded-full bg-white/30 blur-xl" />
 
