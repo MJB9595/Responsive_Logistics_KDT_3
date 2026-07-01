@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { useCountUp } from '../../hooks/useCountUp'
+import { useEffect, useState } from "react";
+import { useCountUp } from "../../hooks/useCountUp";
 
 /**
  * 히어로 배경 이미지 자리.
@@ -7,44 +7,46 @@ import { useCountUp } from '../../hooks/useCountUp'
  * 예) const HERO_BG = '/images/service-hero.jpg'
  * 비워두면(빈 문자열) 임시 그라데이션 배경이 대신 표시됩니다.
  */
-const HERO_BG = ''
+const HERO_BG = "/public/images/service-hero.png";
 
-const ENTER = 'animate-rise'
+const ENTER = "animate-rise";
 
 function Stat({
   value,
   decimals = 0,
-  suffix = '',
+  suffix = "",
   label,
   color,
   active,
 }: {
-  value: number
-  decimals?: number
-  suffix?: string
-  label: string
-  color: string
-  active: boolean
+  value: number;
+  decimals?: number;
+  suffix?: string;
+  label: string;
+  color: string;
+  active: boolean;
 }) {
-  const display = useCountUp(value, { active, decimals })
+  const display = useCountUp(value, { active, decimals });
   return (
     <div className="text-center">
-      <div className={`text-[26px] font-extrabold tabular-nums ${color} sm:text-[30px]`}>
+      <div
+        className={`text-[26px] font-extrabold tabular-nums ${color} sm:text-[30px]`}
+      >
         {display}
         <span>{suffix}</span>
       </div>
       <div className="mt-1 text-[13px] text-sky-300/90">{label}</div>
     </div>
-  )
+  );
 }
 
 export default function ServiceHero() {
-  const [counting, setCounting] = useState(false)
+  const [counting, setCounting] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setCounting(true), 400)
-    return () => clearTimeout(t)
-  }, [])
+    const t = setTimeout(() => setCounting(true), 400);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <section
@@ -81,33 +83,59 @@ export default function ServiceHero() {
         </span>
 
         <h1 className="text-shadow-hero mt-6 text-[30px] font-normal leading-[1.28] text-white sm:text-[42px] lg:text-[48px]">
-          <span className={`${ENTER} block`} style={{ animationDelay: '100ms' }}>
+          <span
+            className={`${ENTER} block`}
+            style={{ animationDelay: "100ms" }}
+          >
             냉장·냉동 물류에 최적화된
           </span>
-          <span className={`${ENTER} block`} style={{ animationDelay: '200ms' }}>
+          <span
+            className={`${ENTER} block`}
+            style={{ animationDelay: "200ms" }}
+          >
             <span className="bg-gradient-to-r from-sky-300 via-sky-400 to-cyan-300 bg-clip-text font-extrabold text-transparent">
               스마트 WMS
-            </span>{' '}
+            </span>{" "}
             <span className="font-medium">서비스</span>
           </span>
         </h1>
 
         <p
           className={`${ENTER} mt-6 max-w-xl text-[15px] leading-relaxed text-sky-200/90 sm:text-[17px]`}
-          style={{ animationDelay: '320ms' }}
+          style={{ animationDelay: "320ms" }}
         >
-          온도부터 유통기한, 재고까지 — 신선 물류의 전 과정을 하나의 플랫폼에서 관리하세요.
+          온도부터 유통기한, 재고까지 — 신선 물류의 전 과정을 하나의 플랫폼에서
+          관리하세요.
         </p>
 
         <div
           className={`${ENTER} mt-11 grid grid-cols-3 gap-x-8 gap-y-6 sm:gap-x-14`}
-          style={{ animationDelay: '460ms' }}
+          style={{ animationDelay: "460ms" }}
         >
-          <Stat value={99.9} decimals={1} suffix="%" label="온도 유지율" color="text-sky-400" active={counting} />
-          <Stat value={12530} suffix="+" label="관리 상품 수" color="text-white" active={counting} />
-          <Stat value={50} suffix="+" label="도입 고객사" color="text-green-500" active={counting} />
+          <Stat
+            value={99.9}
+            decimals={1}
+            suffix="%"
+            label="온도 유지율"
+            color="text-sky-400"
+            active={counting}
+          />
+          <Stat
+            value={12530}
+            suffix="+"
+            label="관리 상품 수"
+            color="text-white"
+            active={counting}
+          />
+          <Stat
+            value={50}
+            suffix="+"
+            label="도입 고객사"
+            color="text-green-500"
+            active={counting}
+          />
         </div>
       </div>
     </section>
-  )
+  );
 }
