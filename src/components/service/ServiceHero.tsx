@@ -7,7 +7,7 @@ import { useCountUp } from "../../hooks/useCountUp";
  * 예) const HERO_BG = '/images/service-hero.jpg'
  * 비워두면(빈 문자열) 임시 그라데이션 배경이 대신 표시됩니다.
  */
-const HERO_BG = "/public/images/service-hero.png";
+const HERO_BG = "/images/service-hero.png";
 
 const ENTER = "animate-rise";
 
