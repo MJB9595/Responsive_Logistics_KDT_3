@@ -42,7 +42,7 @@ export default function Navbar() {
       >
         {/* Logo */}
         <Link to="/" className="group flex items-center gap-3.5" aria-label="Fresh Chain WMS 홈">
-          <span className="grid h-12 w-12 place-items-center rounded-[13px] bg-gradient-to-br from-sky-500 to-sky-700 text-white shadow-lg shadow-sky-500/30 transition-transform duration-500 group-hover:scale-105 group-hover:rotate-[18deg]">
+          <span className="grid h-12 w-12 place-items-center rounded-[13px] bg-gradient-to-br from-sky-500 to-sky-700 text-white shadow-sm shadow-sky-900/10 transition-transform duration-500 group-hover:scale-105 group-hover:rotate-[18deg]">
             <Snowflake className="h-6 w-6" />
           </span>
           <span className="flex flex-col leading-none">
@@ -87,7 +87,7 @@ export default function Navbar() {
           </Link>
           <Link
             to="/support"
-            className="rounded-[10px] bg-gradient-to-br from-sky-500 to-sky-700 px-7 py-2.5 text-[15px] font-semibold text-white shadow-lg shadow-sky-500/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-sky-500/40 hover:brightness-110"
+            className="rounded-[10px] bg-gradient-to-br from-sky-500 to-sky-700 px-7 py-2.5 text-[15px] font-semibold text-white shadow-sm shadow-sky-900/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:shadow-sky-500/20 hover:brightness-110"
           >
             로그인
           </Link>

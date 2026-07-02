@@ -79,7 +79,7 @@ export default function Footer() {
           {/* brand */}
           <Reveal className="max-w-sm">
             <Link to="/" className="group flex items-center gap-3.5">
-              <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-sky-500 to-sky-700 text-white shadow-lg shadow-sky-500/30 transition-transform duration-500 group-hover:rotate-[18deg]">
+              <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-sky-500 to-sky-700 text-white shadow-sm shadow-sky-900/10 transition-transform duration-500 group-hover:rotate-[18deg]">
                 <Snowflake className="h-6 w-6" />
               </span>
               <span className="flex flex-col leading-none">
