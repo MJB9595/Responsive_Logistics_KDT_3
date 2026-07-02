@@ -10,6 +10,7 @@ import {
   TrendingUp,
   Zap,
 } from "../components/icons";
+import Reveal from "../components/Reveal";
 
 const tabs = [
   { id: "system", label: "시스템 구조" },
@@ -210,7 +211,7 @@ export default function ArchitecturePage() {
 
       <section id="system" className="scroll-mt-32 px-6 pb-16 pt-8">
         <div className="mx-auto grid max-w-6xl gap-16 rounded-[28px] border border-slate-200 bg-white px-12 py-14 shadow-[0_24px_70px_rgba(15,23,42,0.08)] lg:grid-cols-[0.88fr_1.5fr] lg:items-center">
-          <div className="rounded-3xl bg-gradient-to-br from-slate-950 via-sky-950 to-slate-900 p-7 text-white shadow-2xl shadow-slate-300/60">
+           <Reveal variant="zoom" className="rounded-3xl bg-gradient-to-br from-slate-950 via-sky-950 to-slate-900 p-7 text-white shadow-2xl shadow-slate-300/60">
             <div className="mb-6 flex items-center justify-between">
               <h2 className="text-lg font-bold text-sky-100">
                 시스템 아키텍처
@@ -267,9 +268,9 @@ export default function ArchitecturePage() {
                 </div>
               </div>
             ))}
-          </div>
+          </Reveal>
 
-          <div>
+          <Reveal delay={120}>
             <span className="inline-flex rounded-full bg-sky-100 px-5 py-2 text-sm font-extrabold text-sky-700">
               시스템 구조
             </span>
@@ -341,7 +342,7 @@ export default function ArchitecturePage() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -357,8 +358,10 @@ export default function ArchitecturePage() {
             {featureCards.map((card) => {
               const Icon = card.icon;
               return (
-                <article
+                <Reveal
                   key={card.title}
+                  as="article"
+                  delay={(featureCards.indexOf(card) % 3) * 80}
                   className="flex items-center gap-5 rounded-2xl border border-slate-200 bg-white p-7 text-left shadow-sm"
                 >
                   <span
@@ -374,7 +377,7 @@ export default function ArchitecturePage() {
                       {card.desc}
                     </p>
                   </div>
-                </article>
+                 </Reveal>
               );
             })}
           </div>
@@ -422,7 +425,7 @@ export default function ArchitecturePage() {
             </div>
           </div>
 
-          <div className="rounded-[28px] bg-gradient-to-br from-slate-950 to-sky-950 p-8 text-white shadow-2xl shadow-slate-300/70">
+          <Reveal variant="zoom" className="rounded-[28px] bg-gradient-to-br from-slate-950 to-sky-950 p-8 text-white shadow-2xl shadow-slate-300/70">
             <div className="mb-6 flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-bold">운영 현황</h3>
@@ -573,7 +576,7 @@ export default function ArchitecturePage() {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -589,8 +592,10 @@ export default function ArchitecturePage() {
             {stacks.map((stack) => {
               const Icon = stack.icon;
               return (
-                <article
+                <Reveal
                   key={stack.title}
+                  as="article"
+                  delay={(stacks.indexOf(stack) % 6) * 70}
                   className="border border-slate-100 p-9"
                 >
                   <span
@@ -604,7 +609,7 @@ export default function ArchitecturePage() {
                   <p className="mt-4 whitespace-pre-line text-sm leading-6 text-slate-500">
                     {stack.desc}
                   </p>
-                </article>
+                </Reveal>
               );
             })}
           </div>
@@ -624,8 +629,11 @@ export default function ArchitecturePage() {
             {performance.map((item) => {
               const Icon = item.icon;
               return (
-                <article
+                <Reveal
                   key={item.label}
+                  as="article"
+                  variant="zoom"
+                  delay={(performance.indexOf(item) % 4) * 90}
                   className="rounded-2xl border border-white/10 bg-white/10 p-10 shadow-xl shadow-slate-950/20"
                 >
                   <span
@@ -642,7 +650,7 @@ export default function ArchitecturePage() {
                     {item.label}
                   </p>
                   <p className="mt-5 text-sm text-sky-200">{item.desc}</p>
-                </article>
+                 </Reveal>
               );
             })}
           </div>
