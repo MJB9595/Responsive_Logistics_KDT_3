@@ -1,4 +1,5 @@
-import { useEffect, useState, type ReactNode } from 'react'
+import { type ReactNode } from 'react'
+import PageTabs from '../components/common/PageTabs'
 import Reveal from '../components/Reveal'
 import { useInView } from '../hooks/useInView'
 import { useCountUp } from '../hooks/useCountUp'
@@ -29,70 +30,7 @@ const SECTIONS = [
   { id: 'location', label: '오시는 길' },
 ] as const
 
-const SECTION_IDS = SECTIONS.map((s) => s.id)
-
-function useScrollSpy() {
-  const [active, setActive] = useState<string>(SECTION_IDS[0])
-  useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY + 200
-      let current = SECTION_IDS[0]
-      for (const id of SECTION_IDS) {
-        const el = document.getElementById(id)
-        if (el && el.offsetTop <= y) current = id
-      }
-      setActive(current)
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-  return active
-}
-
-function scrollToId(id: string) {
-  const el = document.getElementById(id)
-  if (el) window.scrollTo({ top: el.offsetTop - 170, behavior: 'smooth' })
-}
-
-function SubNav() {
-  const active = useScrollSpy()
-  return (
-    <nav
-      className="sticky top-[80px] z-40 overflow-x-auto px-4 pb-4 pt-7 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      aria-label="회사 소개 섹션 이동"
-    >
-      <div className="mx-auto flex w-max gap-1 rounded-full border border-slate-200/80 bg-white/95 p-1.5 shadow-[0_10px_30px_-14px_rgba(15,23,42,0.28)] backdrop-blur-sm">
-        {SECTIONS.map((s) => {
-          const isActive = active === s.id
-          return (
-            <button
-              key={s.id}
-              type="button"
-              onClick={() => scrollToId(s.id)}
-              aria-current={isActive ? 'true' : undefined}
-              className={`group relative shrink-0 rounded-full px-5 py-2.5 text-[14px] font-bold transition-all duration-300 sm:px-6 ${
-                isActive
-                  ? 'bg-gradient-to-br from-sky-500 to-sky-600 text-white shadow-sm shadow-sky-500/25'
-                  : 'text-slate-500 hover:text-sky-600'
-              }`}
-            >
-              {/* sub1·sub2 dot-pop: active always, others on hover */}
-              <span
-                className={`pointer-events-none absolute -top-1.5 left-1/2 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-sky-400 shadow-[0_0_0_5px_rgba(14,165,233,0.16)] transition-all duration-300 ${
-                  isActive
-                    ? 'scale-100 opacity-100'
-                    : 'scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100'
-                }`}
-              />
-              {s.label}
-            </button>
-          )
-        })}
-      </div>
-    </nav>
-  )
-}
+// Removed custom scroll spy and SubNav, using PageTabs instead
 
 /* ── 공통: 섹션 라벨 헤더 ─────────────────────────────────────── */
 function SectionHeader({
@@ -218,7 +156,10 @@ function CompanySection() {
             <Reveal delay={220}>
               <button
                 type="button"
-                onClick={() => scrollToId('values')}
+                onClick={() => {
+                  const el = document.getElementById('values')
+                  if (el) window.scrollTo({ top: el.offsetTop - 170, behavior: 'smooth' })
+                }}
                 className="group mt-6 inline-flex items-center gap-1.5 text-[15px] font-semibold text-sky-600"
               >
                 우리가 만드는 핵심 가치 보기
@@ -629,7 +570,7 @@ export default function AboutPage() {
   return (
     <>
       <AboutHero />
-      <SubNav />
+      <PageTabs tabs={[...SECTIONS]} />
       <CompanySection />
       <ValuesSection />
       <CeoSection />

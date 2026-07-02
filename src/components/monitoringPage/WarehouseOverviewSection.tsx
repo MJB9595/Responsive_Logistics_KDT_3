@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import PageTabs from "../common/PageTabs";
 import {
   tabs,
   summaryCards,
@@ -96,13 +97,7 @@ function HoverTilt({
 }
 
 export const WarehouseOverviewSection = (): JSX.Element => {
-  const [, setActiveTab] = useState("실시간 현황");
   const navigate = useNavigate();
-
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    setActiveTab(id);
-  };
 
   return (
     <section
@@ -110,26 +105,7 @@ export const WarehouseOverviewSection = (): JSX.Element => {
                  p-4 sm:p-5 md:p-6 lg:p-8 shadow-2xl bg-white"
       aria-labelledby="warehouse-overview-heading"
     >
-      <div className="relative mx-auto w-fit mb-10 animate-in fade-in slide-in-from-top-4 duration-500">
-        <div className="relative mx-auto w-fit">
-          <div className="absolute -inset-2 -z-10 rounded-full bg-white/30 blur-xl animate-pulse" />
-
-          <div className="flex rounded-full border border-white/50 bg-white p-1.5 shadow-lg">
-            {tabs.map((tab, idx) => (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => scrollToSection(tab.id)}
-                className="group relative rounded-full px-5 sm:px-6 py-2 text-sm font-bold text-slate-500 transition-all duration-300 hover:bg-sky-500 hover:text-white hover:shadow-lg hover:shadow-sky-500/25 focus-visible:bg-sky-500 focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 animate-in fade-in slide-in-from-bottom-2 duration-500"
-                style={{ animationDelay: `${idx * 100}ms` }}
-              >
-                <span className="pointer-events-none absolute -top-2 left-1/2 h-3 w-3 -translate-x-1/2 scale-0 rounded-full bg-sky-400 opacity-0 shadow-[0_0_0_8px_rgba(14,165,233,0.18)] transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100" />
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
+      <PageTabs tabs={tabs} />
 
       <div
         id="warehouse-overview-panel"
