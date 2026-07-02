@@ -28,6 +28,7 @@ function HoverTilt({
     if (!el) return;
 
     function onMove(e: MouseEvent) {
+      if (!el) return;
       const rect = el.getBoundingClientRect();
       const px = (e.clientX - rect.left) / rect.width;
       const py = (e.clientY - rect.top) / rect.height;
@@ -95,7 +96,7 @@ function HoverTilt({
 }
 
 export const WarehouseOverviewSection = (): JSX.Element => {
-  const [activeTab, setActiveTab] = useState("실시간 현황");
+  const [, setActiveTab] = useState("실시간 현황");
   const navigate = useNavigate();
 
   const scrollToSection = (id: string) => {
@@ -265,7 +266,7 @@ export const WarehouseOverviewSection = (): JSX.Element => {
           </div>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {featureCards.map((card, idx) => (
+            {featureCards.map((card) => (
               <HoverTilt key={card.title} maxRotate={6} scale={1.04}>
                 <div
                   className="flex items-center gap-2.5 sm:gap-3.5
