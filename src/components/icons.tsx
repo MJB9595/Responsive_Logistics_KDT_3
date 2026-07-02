@@ -303,11 +303,17 @@ export const Check = (p: IconProps) => (
   </Svg>
 )
 
-export const Target = (p: IconProps) => (
+export const MapPin = (p: IconProps) => (
   <Svg {...p}>
-    <circle cx="12" cy="12" r="10" />
-    <circle cx="12" cy="12" r="6" />
-    <circle cx="12" cy="12" r="2" />
+    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+    <circle cx="12" cy="10" r="3" />
+  </Svg>
+)
+
+export const CheckCircle2 = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+    <path d="m9 11 3 3L22 4" />
   </Svg>
 )
 
@@ -317,64 +323,5 @@ export const Users = (p: IconProps) => (
     <circle cx="9" cy="7" r="4" />
     <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
     <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-  </Svg>
-)
-
-export const User = (p: IconProps) => (
-  <Svg {...p}>
-    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-    <circle cx="12" cy="7" r="4" />
-  </Svg>
-)
-
-export const Quote = (p: IconProps) => (
-  <Svg {...p}>
-    <path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2.5a.5.5 0 0 1 .5.5v.5a2 2 0 0 1-2 2 1 1 0 0 0-1 1v1a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" />
-    <path d="M4 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2.5a.5.5 0 0 1 .5.5v.5a2 2 0 0 1-2 2 1 1 0 0 0-1 1v1a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" />
-  </Svg>
-)
-
-export const Mail = (p: IconProps) => (
-  <Svg {...p}>
-    <rect width="20" height="16" x="2" y="4" rx="2" />
-    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-  </Svg>
-)
-
-export const MapPin = (p: IconProps) => (
-  <Svg {...p}>
-    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
-    <circle cx="12" cy="10" r="3" />
-  </Svg>
-)
-
-export const Train = (p: IconProps) => (
-  <Svg {...p}>
-    <rect width="16" height="16" x="4" y="3" rx="2" />
-    <path d="M4 11h16" />
-    <path d="M12 3v8" />
-    <path d="m8 19-2 3" />
-    <path d="m18 22-2-3" />
-    <path d="M8 15h.01" />
-    <path d="M16 15h.01" />
-  </Svg>
-)
-
-export const Bus = (p: IconProps) => (
-  <Svg {...p}>
-    <path d="M8 6v6M15 6v6M2 12h19.6" />
-    <path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" />
-    <circle cx="7" cy="18" r="2" />
-    <path d="M9 18h5" />
-    <circle cx="16" cy="18" r="2" />
-  </Svg>
-)
-
-export const Car = (p: IconProps) => (
-  <Svg {...p}>
-    <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
-    <circle cx="7" cy="17" r="2" />
-    <path d="M9 17h6" />
-    <circle cx="17" cy="17" r="2" />
   </Svg>
 )
